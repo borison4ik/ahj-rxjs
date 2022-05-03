@@ -1,0 +1,28 @@
+{
+  "name": "ahj-http-helpdesk-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "prestart": "npm install",
+    "start": "forever index.js",
+    "watch": "forever -w index.js"
+  },
+  "engines": {
+    "node": "11.x"
+  },
+  "keywords": [],
+  "author": "Borisenko Valentin",
+  "license": "MIT",
+  "dependencies": {
+    "@faker-js/faker": "^6.2.0",
+    "forever": "^4.0.3",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-cors": "0.0.16",
+    "koa-router": "^10.1.1",
+    "koa-static": "^5.0.0",
+    "uuid": "^8.3.2"
+  }
+}
