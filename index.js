@@ -23,38 +23,26 @@ app.use(
   }),
 );
 
-const messages = [
-  {
-    id: uuid(),
-    from: faker.internet.email(),
-    subject: faker.company.companyName(),
-    body: faker.lorem.paragraph(),
-    received: new Date(faker.date.recent(10)).getTime(),
-  },
-];
-
 router.get('/', async (ctx, next) => {
   ctx.response.status = 200;
   ctx.response.body = [];
 });
 
-router.post('/messages/add', async (ctx, next) => {
-  messages.push({
-    id: uuid(),
-    from: faker.internet.email(),
-    subject: faker.company.companyName(),
-    body: faker.lorem.paragraph(),
-    received: new Date(faker.date.recent(10)).getTime(),
-  });
-  ctx.response.status = 204;
-});
-
 router.get('/messages/unread', async (ctx, next) => {
   ctx.response.status = 200;
+  const getMessage = () => {
+    return {
+      id: uuid(),
+      from: faker.internet.email(),
+      subject: faker.company.companyName(),
+      body: faker.lorem.paragraph(),
+      received: new Date(faker.date.recent(10)).getTime(),
+    };
+  };
   ctx.response.body = JSON.stringify({
     status: 'ok',
     timestamp: 1553400000,
-    messages,
+    messages: Array.from({ length: Math.floor(Math.random() * 10 + 1) }).map(getMessage),
   });
 });
 
